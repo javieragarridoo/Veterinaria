@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+.input-wrapper {
+    position: relative;
+    width: 400px;
+    margin-bottom: 20px;
+}
+body {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center; /* Para centrar el texto */
+}
+@media(max-width: 991px) {
+    body {
+        padding: 40px;
+    }
+
+    form {
+        padding: 40px;
+        width: 100%;
+    }
+
+    .input-wrapper {
+        position: relative;
+        width: 88%;
+        margin-bottom: 35px;
+    }
+
+    input {
+        padding: 20px 0px 20px 45px;
+    }
+
+    .input-icon {
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        margin-left: 50px;
+    }
+    
+}

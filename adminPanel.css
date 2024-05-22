@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+
+.title {
+    text-align: center;
+    font-size: 30px;
+    color: rgb(4, 75, 111);
+    font-family: 'Poppins', sans-serif;
+    margin: 20px;
+    text-transform: uppercase;
+}
+
+.btn-crear {
+    text-align: center;
+    margin-bottom: 10px;
+    margin-left: 120px;
+    cursor: pointer;
+    padding: 10px 20px; /* ajusta el relleno del boton top, right, bottom, left ese es el orden */
+    background: linear-gradient(
+        90deg,
+        rgb(4, 75, 111) 25%,
+        rgb(5, 118, 111) 100%);
+    border-radius: 10px;
+    color: white;
+    text-decoration: none; /* hace que no se vea el subrayado del texto */
+    border: none;
+    display: inline-block; /* Para que el botón ocupe solo el ancho del texto */
+ }
+
+ .btn-crear:hover {
+    background-color: rgb(4, 75, 111); /* Cambia el color de fondo al pasar el ratón */
+}
+
+.tabla {
+    margin-top: 35px;
+    margin-left: auto; /* Centra la tabla horizontalmente */
+    margin-right: auto; /* Centra la tabla horizontalmente */
+    border-collapse: collapse; /* Fusiona los bordes de las celdas */
+    width: 80%; 
+}
+
+/* celdas del encabezado (thead) */
+.tabla th {
+    background-color: rgb(4, 75, 111); 
+    color: white;
+    padding: 12px 15px; 
+    text-align: center; 
+    border-bottom: 1px solid rgb(4, 75, 111); 
+    font-family: 'Poppins', sans-serif;
+}
+
+/*  celdas de datos  */
+.tabla td {
+    padding: 5px 10px; /* ajusta el espacio dentro de la celda top, right, bottom, left ese es el orden */
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+}
+
+.btn-editar {
+    display: inline-block;
+    padding: 6px 11px;
+    background-color: #FFC300;
+    border-radius: 15px;
+    text-decoration: none;
+    color: white;
+    border: none;
+    margin-right: 10px;
+    font-size: 15px;
+}
+
+.btn-eliminar {
+    display: inline-block;
+    padding: 6px 11px;
+    background-color: #EE2108;
+    border-radius: 15px;
+    text-decoration: none;
+    color: white;
+    border: none;
+    margin-right: 0px;
+    font-size: 15px;
+}
+
+.btn-editar:hover,
+.btn-eliminar:hover {
+    background-color: #0056b3; /* Cambia el color de fondo */
+    color: #fff; /* Cambia el color del texto */
+}

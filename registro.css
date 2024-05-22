@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+body {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+form {
+    box-shadow: 0 0 20px rgb(0, 0, 0, 0.2);
+    padding: 30px 50px 0px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 300px;
+}
+
+form h2 {
+    font-size: 35px;
+    color: rgb(4, 75, 111);
+    margin: 0;
+    margin-left: 25px;
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+}
+
+form p {
+    font-size: 16px;
+    color: #323232;
+    margin-bottom: 35px;
+    margin-left: 25px;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+input {
+    color: #323232;
+    padding: 20px 10px 20px 15px;
+    width: 100%;
+    border-radius: 25px;
+    border: 0;
+    box-shadow: 0 0 20px rgb(192, 203, 251, 0.7);
+    outline: none;
+    font-size: 16px;
+}
+
+input::placeholder {
+    font-size: 16px;
+    color: #bbbbE2;
+    margin-left: 50px;
+    padding: 10px;
+}
+
+.input-icon {
+    position:absolute;
+    height: 20px;
+    width: 30px;
+    left: 280px;
+    top: 50%;
+    transform: translateY(-45%);
+    color: rgb(4, 75, 111);
+}
+
+.btn {
+    margin-left: 15px;
+    padding: 15px;
+    background: linear-gradient(
+        90deg,
+        rgb(4, 75, 111) 25%,
+        rgb(5, 118, 111) 100%);
+    color: white;
+    box-shadow: 0 0 20px rgb(192, 203, 251, 0.7);
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: rgb(4, 75, 111);
+}
+
+.btn-1 {
+    margin-left: 30px;
+    padding: 15px;
+    color:#323232;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+.success { /* FALTA HACER RESPONSIVO  */
+    position: absolute;
+    color: #00c83c;
+    font-size: 15px;
+    top: 130px;
+    margin-left: 45px;
+}
+
+.error { /* FALTA HACER RESPONSIVO  */
+    color: #00c83c;
+    font-size: 15px;
+    top: 130px;
+    margin-left: 45px;
+}
+
+
+@media(max-width: 991px) {
+    body {
+        padding: 40px;
+    }
+
+    form {
+        padding: 40px;
+        width: 100%;
+    }
+
+    .input-wrapper {
+        position: relative;
+        width: 88%;
+        margin-bottom: 35px;
+    }
+
+    input {
+        padding: 20px 0px 20px 45px;
+    }
+
+    .input-icon {
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        margin-left: 50px;
+    }
+    
+}
