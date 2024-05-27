@@ -1,126 +1,122 @@
+<?php
+
+session_start();
+$isLoggedIn = isset($_SESSION['id']);
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion de Citas</title>
+    <title>Registrar Citas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="adminPanel.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="agregarVet.css">
 </head>
 <body>
 
-<div class="menu container">
- <a href="#" class="logo">Vet Peluditos</a>
- <input type="checkbox" id="menu"/>
- <label for="menu">
- <img src="images/menu.png" lcass="menu-icono" alt="menu">
-</label>
-<nav class="navbar">
- <ul>
-     <li><a href="#">Gestion de citas</a></li>
-     <li><a href="nosotros.php">Gestion de pacientes</a></li>
-     <li><a href="servicios.php">Historial de consultas</a></li>
-     <li><a href="contacto.php">cerrar sesion</a></li>
- </ul>
-</nav>
-</div>  
-<br>
-<br>
-<h2 class="title">Citas</h2>
-    <div class="table-form">
-    <table class="tabla " id="dataTable" border="1">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Nombre</th>
-            <th>Telefono</th>
-            <th>Email</th>
-            <th>detalle consulta</th>
-        </tr>
-        </thead>
-        <tbody>
-
-    <?php
-    include('conexion.php');
-
-    $consulta = "SELECT usuarios.id, usuarios.nombre, usuarios.email, roles.nombre_rol FROM usuarios
-    LEFT JOIN roles ON usuarios.id_rol = roles.id_rol";
-    $resultado = mysqli_query($conex, $consulta);
-
-    // mostrar lista de usuarios
-
-    while($fila = mysqli_fetch_assoc($resultado)) {
-        echo "<tr>";
-        echo "<td>" . $fila['id'] . "</td>";
-        echo "<td>" . $fila['nombre'] . "</td>";
-        echo "<td>" . $fila['email'] . "</td>";
-        echo "<td>" . $fila['nombre_rol'] . "</td>";
-        echo '<td> 
-        </td>';
-        
-        }
-
-    ?>
-    </tbody>
-    </table>
+<header class="header">
+    <div class="menu container">
+        <a href="#" class="logo">Vet Peluditos</a>
+        <input type="checkbox" id="menu"/>
+        <label for="menu">
+            <img src="images/menu.png" lcass="menu-icono" alt="menu">
+        </label>
+        <nav class="navbar">
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="nosotros.php">Nosotros</a></li>
+            <li><a href="servicios.php">Servicios</a></li>
+            <li><a href="contacto.php">Contacto</a></li>
+            <?php if ($isLoggedIn): ?>
+                <li><a href="registrar_mascota.php">Registrar mascota</a></li>
+                <li><a href="logout.php">Cerrar Sesión</a></li>
+            <?php else: ?>
+                <li><a href="login.php">Ingresar</a></li>
+            <?php endif; ?>
+    </ul>
+        </nav>
     </div>
+</header>
 
-    <script>
-        $(document).ready(function() {
-            $('#dataTable').DataTable({
-                "language": {
-                    
-    "sProcessing":     "Procesando...",
-    "sLengthMenu":     "Mostrar _MENU_ registros",
-    "sZeroRecords":    "No se encontraron resultados",
-    "sEmptyTable":     "Ningún dato disponible en esta tabla",
-    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-    "sSearch":         "Buscar:",
-    "sInfoThousands":  ",",
-    "sLoadingRecords": "Cargando...",
-    "oPaginate": {
-        "sFirst":    "Primero",
-        "sLast":     "Último",
-        "sNext":     "Siguiente",
-        "sPrevious": "Anterior"
-    },
-    "oAria": {
-        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-    },
-    "buttons": {
-        "copy": "Copiar",
-        "colvis": "Visibilidad"
-                }
-            }
-            });
-        });
+<main>
+    <form method="post">
+        <h2>Registrar Citas</h2>
+        <p>Registra una cita para tu mascota</p>
 
-        function searchTable() {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("searchInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("dataTable");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
+        <div class="input-wrapper">
+            <label for="id_mascota">Seleccione la mascota:</label>
+            <select name="id_mascota" id="id_mascota">
+                <?php
+                include("conexion.php");
+                $id = $_SESSION['id']; // Asumiendo que tienes el id del usuario en la sesión
+                $queryMascotas = "SELECT id_mascota, nom_mascota FROM mascota WHERE id = '$id'";
+                $resultMascotas = mysqli_query($conex, $queryMascotas);
+                while ($rowMascota = mysqli_fetch_assoc($resultMascotas)) {
+                    echo "<option value='" . $rowMascota['id_mascota'] . "'>" . $rowMascota['nom_mascota'] . "</option>";
                 }
-            }
-        }
-    </script>
+                ?>
+            </select>
+        </div>
+
+        <div class="input-wrapper">
+            <label for="especialidad">Seleccione la especialidad:</label>
+            <select name="especialidad" id="especialidad">
+                <?php
+                $queryEspecialidades = "SELECT id_especialidad, nombre_especialidad FROM especialidades";
+                $resultEspecialidades = mysqli_query($conex, $queryEspecialidades);
+                while ($rowEspecialidad = mysqli_fetch_assoc($resultEspecialidades)) {
+                    echo "<option value='" . $rowEspecialidad['id_especialidad'] . "'>" . $rowEspecialidad['nombre_especialidad'] . "</option>";
+                }
+                ?>
+            </select>
+        </div>
+
+        <div class="input-wrapper">
+            <label for="idVeterinario">Seleccione el veterinario:</label>
+            <select name="idVeterinario" id="idVeterinario">
+                <?php
+                $queryVeterinarios = "SELECT idVeterinario, nombre FROM veterinario";
+                $resultVeterinarios = mysqli_query($conex, $queryVeterinarios);
+                while ($rowVeterinario = mysqli_fetch_assoc($resultVeterinarios)) {
+                    echo "<option value='" . $rowVeterinario['idVeterinario'] . "'>" . $rowVeterinario['nombre'] . "</option>";
+                }
+                ?>
+            </select>
+        </div>
+
+        <div class="input-wrapper">
+            <label for="fecha">Fecha de la cita:</label>
+            <input type="date" name="fecha" id="fecha" required>
+        </div>
+
+        <div class="input-wrapper">
+            <label for="hora">Hora de la cita:</label>
+            <input type="time" name="hora" id="hora" required>
+        </div>
+
+        <input class="btn" type="submit" name="registro_cita" value="Registrar Cita">
+    </form>
+</main>
+
+<?php
+if (isset($_POST['registro_cita'])) {
+    $id_mascota = $_POST['id_mascota'];
+    $idVeterinario = $_POST['idVeterinario'];
+    $fecha = $_POST['fecha'];
+    $hora = $_POST['hora'];
+
+    $queryCita = "INSERT INTO citas (id_mascota, idVeterinario, fecha, hora) VALUES ('$id_mascota', '$idVeterinario', '$fecha', '$hora')";
+    $resultCita = mysqli_query($conex, $queryCita);
+
+    if ($resultCita) {
+        echo "<h3 class='success'>¡Cita registrada exitosamente!</h3>";
+    } else {
+        echo "<h3 class='error'>Ocurrió un error al registrar la cita.</h3>";
+    }
+}
+?>
 
 </body>
 </html>

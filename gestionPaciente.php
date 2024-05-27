@@ -39,9 +39,8 @@
         <tr>
             <th>ID</th>
             <th>Nombre</th>
-            <th>Telefono</th>
-            <th>Email</th>
-            <th>Acciones</th>
+            <th>TIPO MASCOTA</th>
+            <th>RAZA</th>
         </tr>
         </thead>
         <tbody>
@@ -49,21 +48,19 @@
     <?php
     include('conexion.php');
 
-    $consulta = "SELECT usuarios.id, usuarios.nombre, usuarios.email, roles.nombre_rol FROM usuarios
-    LEFT JOIN roles ON usuarios.id_rol = roles.id_rol";
+    $consulta = "SELECT mascota.id_mascota, mascota.nom_mascota, mascota.tipo_mascota, mascota.raza FROM mascota";
     $resultado = mysqli_query($conex, $consulta);
 
     // mostrar lista de usuarios
 
     while($fila = mysqli_fetch_assoc($resultado)) {
         echo "<tr>";
-        echo "<td>" . $fila['id'] . "</td>";
-        echo "<td>" . $fila['nombre'] . "</td>";
-        echo "<td>" . $fila['email'] . "</td>";
-        echo "<td>" . $fila['nombre_rol'] . "</td>";
+        echo "<td>" . $fila['id_mascota'] . "</td>";
+        echo "<td>" . $fila['nom_mascota'] . "</td>";
+        echo "<td>" . $fila['tipo_mascota'] . "</td>";
+        echo "<td>" . $fila['raza'] . "</td>";
         echo '<td> 
-        <a href="editarUsuario.php?id=' . $fila['id'] . '" class="btn-editar"><i class="fas fa-edit"></i> Editar</a>
-        <a href="eliminarUsuario.php?id=' . $fila['id'] . '" class="btn-eliminar"><i class="fas fa-trash"></i> Eliminar</a> 
+        <a href="eliminarUsuario.php?id=' . $fila['id_mascota'] . '" class="btn-eliminar"><i class="fas fa-trash"></i> Eliminar</a> 
         </td>';
         
         }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio de Sesión</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
@@ -27,48 +27,61 @@
 
 </form>
 
-
 <?php
 include("conexion.php"); // Incluir la conexión a la base de datos
 
+// Función para validar la contraseña y manejar la sesión
+function iniciarSesion($usuario, $rol, $redirectPage, $idColumn) {
+    session_start();
+    $_SESSION['id'] = $usuario[$idColumn];
+    $_SESSION['nombre'] = $usuario['nombre'];
+    $_SESSION['email'] = $usuario['email'];
+    $_SESSION['id_rol'] = $rol;
+    header("Location: $redirectPage");
+    exit();
+}
+
 // Validar si se ha enviado el formulario
 if (isset($_POST['iniciarSesion'])) {
-
     $email = $_POST['email'];
     $contraseña = $_POST['contraseña'];
 
-    // Consulta para verificar el usuario por su correo electrónico
-    $consulta = "SELECT id, nombre, email, contraseña, id_rol FROM usuarios WHERE email = '$email'";
-    $resultado = mysqli_query($conex, $consulta);
+    // Consulta para verificar el usuario en ambas tablas
+    $consultaUsuarios = "SELECT id, nombre, email, contraseña, id_rol FROM usuarios WHERE email = '$email'";
+    $resultadoUsuarios = mysqli_query($conex, $consultaUsuarios);
 
-    // Si la consulta devuelve un registro (usuario encontrado)
-    if (mysqli_num_rows($resultado) == 1) {
-        $usuario = mysqli_fetch_assoc($resultado); // Obtener datos del usuario
+    if (!$resultadoUsuarios) {
+        echo '<h3 class="error">Error en la consulta de usuarios: ' . mysqli_error($conex) . '</h3>';
+    }
 
-        // Verificar la contraseña utilizando password_verify
+    $consultaVeterinarios = "SELECT idVeterinario AS id, nombre, email, contraseña, id_rol FROM veterinario WHERE email = '$email'";
+    $resultadoVeterinarios = mysqli_query($conex, $consultaVeterinarios);
+
+    if (!$resultadoVeterinarios) {
+        echo '<h3 class="error">Error en la consulta de veterinarios: ' . mysqli_error($conex) . '</h3>';
+    }
+
+    if (mysqli_num_rows($resultadoUsuarios) == 1) {
+        $usuario = mysqli_fetch_assoc($resultadoUsuarios);
         if (password_verify($contraseña, $usuario['contraseña'])) {
-            // Iniciar sesión utilizando variables de sesión
-            session_start();
-            $_SESSION['id'] = $usuario['id'];
-            $_SESSION['nombre'] = $usuario['nombre'];
-            $_SESSION['email'] = $usuario['email'];
-            $_SESSION['id_rol'] = $usuario['id_rol']; // Almacenar el ID del rol
-
-            // Redirigir a la página principal o según el rol del usuario
             if ($usuario['id_rol'] == 1) { // Administrador
-                header("Location: admin.php");
-            } else if ($usuario['id_rol'] == 2) { // Veterinario
-                header("Location: veterinario.php");
-            } else { // Cliente (por defecto)
-                header("Location: index.php");
+                iniciarSesion($usuario, $usuario['id_rol'], 'admin.php', 'id');
+            } else if ($usuario['id_rol'] == 3) { // Cliente
+                iniciarSesion($usuario, $usuario['id_rol'], 'index.php', 'id');
+            } else {
+                echo '<h3 class="error">Rol no reconocido. Contacta al administrador.</h3>';
             }
-            exit();
         } else {
-            // Contraseña incorrecta
-            echo '<h3 class="error">Credenciales incorrectas. Inténtalo de nuevo.</h3>';
+            echo '<h3 class="error">Contraseña incorrecta. Inténtalo de nuevo.</h3>';
+        }
+    } elseif (mysqli_num_rows($resultadoVeterinarios) == 1) {
+        $veterinario = mysqli_fetch_assoc($resultadoVeterinarios);
+        if (password_verify($contraseña, $veterinario['contraseña'])) {
+            iniciarSesion($veterinario, $veterinario['id_rol'], 'GestionPaciente.php', 'id');
+        } else {
+            echo '<h3 class="error">Contraseña incorrecta. Inténtalo de nuevo.</h3>';
         }
     } else {
-        // Si no se encuentra el usuario, mostrar mensaje de error
         echo '<h3 class="error">Credenciales incorrectas. Inténtalo de nuevo.</h3>';
     }
 }

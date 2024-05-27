@@ -1,0 +1,12 @@
+.iframe-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Establece el alto del contenedor al 100% del viewport */
+}
+
+.iframe-container iframe {
+    width: 810px; /* Ancho original del iframe */
+    height: 600px; /* Altura original del iframe */
+    border: none;
+}
