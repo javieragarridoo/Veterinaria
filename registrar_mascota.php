@@ -12,32 +12,12 @@ $isLoggedIn = isset($_SESSION['id']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Mascotas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="registro.css">
 </head>
 <body>
 
-<header class="header">
-   <div class="menu container">
-    <a href="#" class="logo">Vet Peluditos</a>
-
-    <input type="checkbox" id="menu"/>
-    <label for="menu">
-    <img src="images/menu.png" class="menu-icono" alt="menu">
-    </label>
-    <nav class="navbar">
-        <ul>
-            <li><a href="index.php">Inicio</a></li>
-            <li><a href="nosotros.php">Nosotros</a></li>
-            <li><a href="servicios.php">Servicios</a></li>
-            <li><a href="contacto.php">Contacto</a></li>
-            <li><a href="registrar_mascota.php">Registrar Mascota</a></li>
-        </ul>
-    </nav>
-   </div>
-</header>
-
 <main>
-   <form method="post">
+   <form method="post" class="formulario-container">
     <h2>VetPeluditos</h2>
     
     <p>Regístra tu mascota</p>
@@ -52,6 +32,8 @@ $isLoggedIn = isset($_SESSION['id']);
         <input type="text" name="raza" placeholder="Raza" required>
     </div>  
     <input class="btn" type="submit" name="registro_mascota" value="Registrar">
+
+    <a href="index.php" class="btn-1">Ir al inicio</a>
    </form>
 </main>
 

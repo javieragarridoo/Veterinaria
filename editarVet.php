@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Veterinario</title>
-    <link rel="stylesheet" href="agregarVet.css">
+    <link rel="stylesheet" href="registro.css">
 </head>
 <body>
 

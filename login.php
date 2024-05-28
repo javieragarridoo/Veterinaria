@@ -23,6 +23,7 @@
     </div>
     <input class="btn" type="submit" name="iniciarSesion" value="Iniciar Sesión">
 
+    <a href="forgot.php" class="btn-1">¿Olvidaste tu contraseña?</a>
     <a href="registro.php" class="btn-1">Registrarse</a>
 
 </form>

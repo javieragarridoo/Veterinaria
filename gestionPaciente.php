@@ -1,3 +1,8 @@
+<?php
+session_start();
+$isLoggedIn = isset($_SESSION['id']);
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -15,20 +20,22 @@
 </head>
 <body>
 <div class="menu container">
- <a href="#" class="logo">Vet Peluditos</a>
- <input type="checkbox" id="menu"/>
- <label for="menu">
- <img src="images/menu.png" lcass="menu-icono" alt="menu">
-</label>
-<nav class="navbar">
- <ul>
-     <li><a href="#">Gestion de citas</a></li>
-     <li><a href="nosotros.php">Gestion de pacientes</a></li>
-     <li><a href="servicios.php">Historial de consultas</a></li>
-     <li><a href="contacto.php">cerrar sesion</a></li>
- </ul>
-</nav>
-</div>  
+           <a href="#" class="logo">Vet Peluditos</a>
+           <input type="checkbox" id="menu"/>
+           <label for="menu">
+               <img src="images/menu.png" class="menu-icono" alt="menu">
+           </label>
+           <nav class="navbar">
+               <ul>
+                   <?php if ($isLoggedIn): ?>
+                       <li><a href="gestionarPaciente.php">Gestionar Paciente</a></li>
+                       <li><a href="logout.php">Cerrar Sesión</a></li>
+                   <?php else: ?>
+                       <li><a href="login.php">Ingresar</a></li>
+                   <?php endif; ?>
+               </ul>
+           </nav>
+       </div>
 <br>
 <br>
     <h2 class="title">Lista de Pacientes</h2>
@@ -41,6 +48,7 @@
             <th>Nombre</th>
             <th>TIPO MASCOTA</th>
             <th>RAZA</th>
+            <th>Acciones</th>
         </tr>
         </thead>
         <tbody>

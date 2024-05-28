@@ -18,7 +18,7 @@
 </label>
 <nav class="navbar">
     <ul>
-        <li><a href="#">Inicio</a></li>
+        <li><a href="index.php">Inicio</a></li>
         <li><a href="nosotros.php">Nosotros</a></li>
         <li><a href="servicios.php">Servicios</a></li>
         <li><a href="contacto.php">Contacto</a></li>
@@ -29,72 +29,11 @@
 </nav>
    </div>
 
-   <div class="header-content container">
-    <div class="header-txt">
-        <h1> CENTRO VETERINARIO </h1>
-        <p>
-¡Bienvenido a Vet Peluditos, el hogar del bienestar y la alegría de tu mejor amigo!
-
-Comprendemos que tu mascota es parte de tu familia. Por eso, nos apasiona ofrecer una atención veterinaria integral y de alta calidad, con un enfoque en el amor y el cuidado.
-        </p>
-        <a href="nosotros.php" class="btn-1">informacion</a>
-    </div>
-    <div class="header-img">
-        <img src="images/veterinario.webp" alt="">
-    </div>
-   </div>
-</header>
-
-    <section class="about container">
-        <div class="about-img">
-            <img src="images/cenvet.jpg" alt="">
-        </div>
-        <div class="about-txt">
-            <h2>Nosotros</h2>
-            <p>
-            En Vet Peluditos, nuestro mayor compromiso es la salud y el bienestar de tu mascota. Somos un equipo de profesionales apasionados por los animales, que creemos que cada peludito merece recibir la mejor atención posible.
-            </p>
-            <br>
-            <a href="nosotros.php" class="btn-1">Ver más</a>
-           <!-- <br>
-            <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates eius, ducimus aspernatur rerum soluta deleniti. Reprehenderit dicta dignissimos debitis accusantium. Quasi fuga, dolorem nesciunt tempore culpa beatae odio! Fuga, reiciendis!
-            </p> -->
-        </div>
-    </section>
-
-    <main class="servicios">
-        <h2>Servicios</h2>
-        <div class="servicios-content container">
-            <div class="servicio-1">
-                <i class="fa-sharp fa-solid fa-user-md"></i>
-                <h3>Consulta Medica</h3>
-            </div>
-            <div class="servicio-1">
-                <i class="fa-sharp fa-solid fa-stethoscope"></i>
-                <h3>Cirugias</h3>
-            </div>
-
-            <div class="servicio-1">
-                <i class="fa-sharp fa-solid fa-syringe"></i>
-                <h3>Medicina Preventiva</h3>
-            </div>
-            <div class="servicio-1">
-                <i class="fa-sharp fa-solid fa-scissors"></i>
-                <h3>Peluqueria Canina</h3>
-            </div>
-            <div class="servicio-1">
-                <i class="fa-sharp fa-solid fa-paw"></i>
-                <h3>Implantacion de Chip</h3>
-            </div>
-        </div>
-    </main>
-
     <section class="formulario container">
         
         <form method="post" autocomplete="off">
 
-        <h2>Agenda consulta</h2>
+        <h2>Contáctanos</h2>
 
         <div class="input-group">
             <div class="input-container">
@@ -119,25 +58,7 @@ Comprendemos que tu mascota es parte de tu familia. Por eso, nos apasiona ofrece
     </form>
     </section>
 
-    <footer class="footer">
 
-        <div class="footer-content container">
-            <div class="link">
-                <a href="#" class="logo">CENTRO VETERINARIO</a>
-            </div>
-
-            <div class="link">
-                <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="nosotros.php">Nosotros</a></li>
-                    <li><a href="servicios.php">Servicios</a></li>
-                    <li><a href="contacto.php">Contacto</a></li>
-                </ul>
-            </div>
-
-        </div>
-
-    </footer>
 
     <?php
         include("send.php");

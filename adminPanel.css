@@ -12,8 +12,8 @@
 
 .btn-crear {
     text-align: center;
-    margin-bottom: 10px;
-    margin-left: 120px;
+    margin-bottom: 50px;
+    margin-left: 200px;
     cursor: pointer;
     padding: 10px 20px; /* ajusta el relleno del boton top, right, bottom, left ese es el orden */
     background: linear-gradient(
