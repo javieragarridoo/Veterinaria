@@ -38,6 +38,16 @@ $isLoggedIn = isset($_SESSION['id']);
        </div>
 
    <div class="header-content container">
+
+           <!-- Banner promocional LovPets -->
+           <div class="banner-lovpets">
+                    <a href="https://lovpets.org" target="_blank">
+                        <img src="images/lovpets.jpg" alt="LovPets Fundación">
+                        <div class="banner-text">Apoya a LovPets, la fundación que cuida de los animales sin hogar, obtendras descuentos y beneficios si te suscribes o adoptas a un animal, juntos por nuestros amigos peludos. <strong>Haz clic aquí para más información.</strong></div>
+                    </a>
+                </div>
+           <div class="header-txt">
+
     <div class="header-txt">
         <h1> CENTRO VETERINARIO </h1>
         <p>
@@ -102,7 +112,7 @@ Comprendemos que tu mascota es parte de tu familia. Por eso, nos apasiona ofrece
         
         <form method="post" autocomplete="off">
 
-        <h2>Agenda consulta</h2>
+        <h2>Contáctanos</h2>
 
         <div class="input-group">
             <div class="input-container">
